@@ -7,6 +7,12 @@
 
 body {
     font-family: Arial, sans-serif;
+    background-image: url('bg.jpeg'); /* Set the path to your image */
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the background from repeating */
+    background-attachment: fixed; /* Makes sure the background stays fixed during scrolling */
+    color: white; /* Ensures text is readable on the dark background */
 }
 
 /* Header Styling */
@@ -15,7 +21,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.7); /* Adds transparency to see the background */
     color: white;
 }
 
@@ -99,7 +105,7 @@ nav ul li a {
 }
 
 .planet-video {
-        width: 40%;                   /* 40% of the total width is allocated to the video container */
+    width: 40%;                   /* 40% of the total width is allocated to the video container */
 }
     
 .planet-video video {
@@ -109,7 +115,7 @@ nav ul li a {
 
 .planet-details {
     width: 50%;                   /* 50% of the total width is allocated to the text container */
-    margin-right: 30%;             /* This provides the 10% gap between the video and the text */
+    margin-right: 30%;            /* This provides the 10% gap between the video and the text */
     margin-left: 10%;
     margin-top: 5%;
 }
