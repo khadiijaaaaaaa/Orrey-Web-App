@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASA Exploration - Planets</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header Section with Logo -->
+    <header>
+        <img src="nasa-logo.png" alt="NASA Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="pageB.html">Page B</a></li>
+                <li><a href="pageC.html">Page C</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Planet Information Section -->
+    <main>
+        <section id="planet-info">
+            <div class="planet-view">
+                <div class="planet-video">
+                    <video autoplay loop muted>
+                        <source id="planet-video" src="planets/earth.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="planet-details">
+                    <h2 id="planet-name">Earth</h2>
+                    <p id="planet-description">
+                        Earth is the third planet from the Sun and the only astronomical object known to harbor life. Its surface is 71% water, mostly in oceans, and it has a nitrogen-oxygen atmosphere that supports life.
+                    </p>
+                    <button id="next-planet" onclick="nextPlanet()">Next Planet</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

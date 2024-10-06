@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASA Exploration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header Section with Logo -->
+    <header>
+        <img src="nasa-logo.png" alt="NASA Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="#">Page B</a></li>
+                <li><a href="#">Page C</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Section with 6 Cards -->
+    <main>
+        <div class="card-container">
+            <div class="card">
+                <video autoplay loop muted>
+                    <source src="planets/solar_system.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <p>Explore the wonders of our Solar System.</p>
+                <button onclick="window.location.href='planets.html'">Planets</button>
+            </div>
+            <!-- Additional Cards -->
+            <div class="card">
+                <img src="solarsystem2.gif" alt="Solar system GIF">
+                <p>The solar system.</p>
+                <button>Solar System</button>
+            </div>
+            <div class="card">
+                <img src="astronomy.gif" alt="Astronomy GIF">
+                <p>Discover the mysteries of the cosmos.</p>
+                <button>Learn More</button>
+            </div>
+            <div class="card">
+                <img src="stars.gif" alt="Stars GIF">
+                <p>Learn about stars and their formation.</p>
+                <button>Learn More</button>
+            </div>
+            <div class="card">
+                <img src="black-holes.gif" alt="Black Holes GIF">
+                <p>Dive into the science of black holes.</p>
+                <button>Learn More</button>
+            </div>
+            <div class="card">
+                <img src="galaxies.gif" alt="Galaxies GIF">
+                <p>Explore distant galaxies and the universe.</p>
+                <button>Learn More</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
