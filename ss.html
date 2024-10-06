@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/controls/OrbitControls.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orrery Web App</title>
+</head>
+<body>
+    <h1>Welcome to the Orrery Web App</h1>
+    <p>This is where we will build our app!</p>
+    
+    <script>
+    // Set up the scene, camera, and renderer
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setClearColor(0x000000); // Black background for space
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // OrbitControls for camera movement
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableZoom = true;
+
+    // Move the camera back and slightly up
+    camera.position.set(0, 10, 20);
+    controls.update(); // Update controls with new camera position
+
+    // Load textures
+    const textureLoader = new THREE.TextureLoader();
+    const sunTexture = textureLoader.load('textures/sun.jpg');
+    const earthTexture = textureLoader.load('textures/earth.jpg');
+    const venusTexture = textureLoader.load('textures/venus.jpg');
+    const marsTexture = textureLoader.load('textures/mars.jpg');
+    const jupiterTexture = textureLoader.load('textures/jupiter.jpg');
+    const saturnTexture = textureLoader.load('textures/saturn.jpg');
+    const mercuryTexture = textureLoader.load('textures/mercury.jpg');
+    const uranusTexture = textureLoader.load('textures/uranus.jpg');
+    const neptuneTexture = textureLoader.load('textures/neptune.jpg');
+
+    // Create a function to generate planets
+    function createPlanet(size, texture, distanceFromSun) {
+        const geometry = new THREE.SphereGeometry(size, 32, 32);
+        const material = new THREE.MeshStandardMaterial({ map: texture });
+        const planet = new THREE.Mesh(geometry, material);
+
+        // Create an empty object to act as the orbit path
+        const orbit = new THREE.Object3D();
+        orbit.position.set(0, 0, 0); // Orbit is centered at the Sun
+        scene.add(orbit);
+
+        // Place planet along its orbit at a given distance
+        planet.position.x = distanceFromSun;
+        orbit.add(planet); // Add planet to the orbit
+        return { planet, orbit };
+    }
+
+    // Create the Sun
+    const sunGeometry = new THREE.SphereGeometry(1, 32, 32);
+    const sunMaterial = new THREE.MeshBasicMaterial({ map: sunTexture });
+    const sun = new THREE.Mesh(sunGeometry, sunMaterial);
+    scene.add(sun);
+
+    // Add lighting (the Sun acts as the light source)
+    const pointLight = new THREE.PointLight(0xffffff, 2, 100);
+    pointLight.position.set(0, 0, 0); // Light from the Sun
+    scene.add(pointLight);
+
+    const ambientLight = new THREE.AmbientLight(0x404040); // Dim ambient light
+    scene.add(ambientLight);
+
+    // Create planets with orbits
+    const mercury = createPlanet(0.3, mercuryTexture, 1.5);
+    const venus = createPlanet(0.4, venusTexture, 2);
+    const earth = createPlanet(0.5, earthTexture, 3);
+    const mars = createPlanet(0.3, marsTexture, 4);
+    const jupiter = createPlanet(0.9, jupiterTexture, 6);
+    const saturn = createPlanet(0.8, saturnTexture, 8);
+    const uranus = createPlanet(0.7, uranusTexture, 10);
+    const neptune = createPlanet(0.7, neptuneTexture, 11.5);
+
+    // Define orbital speeds for each planet
+    const orbitalSpeeds = {
+        mercury: 0.02, venus: 0.015, earth: 0.01, mars: 0.008,
+        jupiter: 0.006, saturn: 0.005, uranus: 0.004, neptune: 0.003
+    };
+
+    // Animation loop
+    function animate() {
+        requestAnimationFrame(animate);
+
+        // Rotate each orbit (planets move around the Sun)
+        mercury.orbit.rotation.y += orbitalSpeeds.mercury;
+        venus.orbit.rotation.y += orbitalSpeeds.venus;
+        earth.orbit.rotation.y += orbitalSpeeds.earth;
+        mars.orbit.rotation.y += orbitalSpeeds.mars;
+        jupiter.orbit.rotation.y += orbitalSpeeds.jupiter;
+        saturn.orbit.rotation.y += orbitalSpeeds.saturn;
+        uranus.orbit.rotation.y += orbitalSpeeds.uranus;
+        neptune.orbit.rotation.y += orbitalSpeeds.neptune;
+
+        // Update camera controls
+        controls.update();
+
+        renderer.render(scene, camera);
+    }
+
+    // Start the animation
+    animate();
+
+    </script>
+</body>
+</html>
