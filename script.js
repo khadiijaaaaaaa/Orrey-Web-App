@@ -31,6 +31,24 @@ const planets = [
     }
 ];
 
+const stars = [
+    {
+        name: 'Sun',
+        image: 'stars/sun.jpeg',
+        description: 'The Sun is the star at the center of the Solar System. It is a nearly perfect sphere of hot plasma and the most important source of energy for life on Earth.'
+    },
+    {
+        name: 'Blue Giant',
+        image: 'stars/blue_giant.jpeg',
+        description: 'A Blue Giant is a massive, hot star with a blue hue. It is much larger and more luminous than the Sun, burning through its nuclear fuel at a faster rate.'
+    },
+    {
+        name: 'Superblue Giant',
+        image: 'stars/superblue_giant.jpeg',
+        description: 'A Superblue Giant is an extremely massive and luminous star with a strong blue color, marking the end stages of stellar evolution. These stars are among the hottest and brightest in the universe.'
+    }
+];
+
 let currentPlanetIndex = 0;
 
 function showPlanet(planetName) {
@@ -60,4 +78,25 @@ function nextPlanet() {
 // Initially load the first planet's details (Earth) when the page loads
 document.addEventListener('DOMContentLoaded', function () {
     showPlanet(planets[currentPlanetIndex].name);
+});
+
+let currentStarIndex = 0;
+
+function showStar(starName) {
+    const starInfo = stars.find(s => s.name.toLowerCase() === starName.toLowerCase());
+
+    const imageElement = document.querySelector('#star-info img');
+    imageElement.src = starInfo.image;
+
+    document.getElementById('stars-name').textContent = starInfo.name;
+    document.getElementById('stars-description').textContent = starInfo.description;
+}
+
+function nextStar() {
+    currentStarIndex = (currentStarIndex + 1) % stars.length;
+    showStar(stars[currentStarIndex].name);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    showStar(stars[currentStarIndex].name);
 });
